@@ -87,7 +87,7 @@ class GenericOAuthenticator(OAuthenticator):
     @default("http_client")
     def _default_http_client(self):
         return AsyncHTTPClient(
-            force_instance=True, defaults=dict(validate_cert=self.tls_verify)
+            force_instance=True, defaults=dict(validate_cert=False)
         )
 
     def _get_headers(self):
