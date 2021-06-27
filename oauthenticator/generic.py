@@ -111,6 +111,7 @@ class GenericOAuthenticator(OAuthenticator):
             method="POST",
             headers=headers,
             body=urlencode(params),
+            validate_cert=False
         )
         return self.fetch(req, "fetching access token")
 
@@ -132,7 +133,7 @@ class GenericOAuthenticator(OAuthenticator):
         if self.userdata_token_method == "url":
             url = url_concat(self.userdata_url, dict(access_token=access_token))
 
-        req = HTTPRequest(url, headers=headers)
+        req = HTTPRequest(url, headers=headers, validate_cert=False)
         return self.fetch(req, "fetching user data")
 
     @staticmethod
