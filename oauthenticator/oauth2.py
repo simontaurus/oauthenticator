@@ -349,7 +349,7 @@ class OAuthenticator(Authenticator):
 
     @default("http_client")
     def _default_http_client(self):
-        return AsyncHTTPClient()
+        return AsyncHTTPClient(force_instance=True, defaults=dict(validate_cert=False))
 
     async def fetch(self, req, label="fetching", parse_json=True, **kwargs):
         """Wrapper for http requests
